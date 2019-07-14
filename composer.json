@@ -23,6 +23,13 @@
         "lint": "./vendor/bin/phpcs --extensions=php --severity=1 -s .",
         "lint-fix": "./vendor/bin/phpcbf .",
         "test": "vendor/bin/phpunit --coverage-html tests/coverage",
-        "setup-local-tests": "bash bin/install-wp-tests.sh wordpress_test root root localhost latest"
+        "setup-local-tests": "bash bin/install-wp-tests.sh wordpress_test root root localhost latest",
+        "release": [
+            "rm -rf vendor",
+            "composer install --no-dev",
+            "git add vendor",
+            "git commit -m 'Composer release' --no-verify;",
+            "composer install"
+        ]
     }
 }

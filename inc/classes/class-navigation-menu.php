@@ -41,6 +41,36 @@ class Navigation_Menu {
 	}
 
 	/**
+	 * Runs setup tasks after the instance has been created.
+	 *
+	 * @since 0.1.0
+	 */
+	public function init() {
+		$this->add_filters();
+
+		/**
+		 * Fires after the menu instance has been set up.
+		 * 
+		 * @param Navigation_Menu
+		 */
+		do_action( 'colby_navigation_nav_menu_init', $this );
+	}
+
+	/**
+	 * Adds filters if set in the config.
+	 *
+	 * @since 0.1.0
+	 */
+	public function add_filters() {
+		$filters = $this->get( 'filters' );
+		if ( ! empty( $filters ) && is_array( $filters ) ) {
+			foreach ( $filters as $add_filter_args ) {
+				call_user_func_array( 'add_filter', $add_filter_args );
+			}
+		}
+	}
+
+	/**
 	 * Returns a configuration option.
 	 *
 	 * @since 0.1.0

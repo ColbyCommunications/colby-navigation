@@ -75,11 +75,14 @@ class Colby_Navigation {
 		/**
 		 * Filters configuration options when creationg a Navigation_Menu instance.
 		 *
-		 * @param $array The configuration options array.
+		 * @param array The configuration options array.
 		 */
-		$config = apply_filters( 'colby_navigation_menu_config', $config );
+		$config = (array) apply_filters( 'colby_navigation_menu_config', $config );
 
-		return new Navigation_Menu( $config );
+		$navigation_menu = new Navigation_Menu( $config );
+		$navigation_menu->init();
+
+		return $navigation_menu;
 	}
 
 	/**

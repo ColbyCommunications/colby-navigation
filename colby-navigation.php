@@ -5,9 +5,11 @@
  * @package colby-navigation
  */
 
-use Colby\Plugins\Colby_Navigation\{Colby_Navigation, Horizontal_Header_Nav_Walker};
+use Colby\Plugins\Colby_Navigation\Colby_Navigation;
+use function Colby\Plugins\Colby_Navigation\horizontal_header_nav_configuration;
 
 require_once 'vendor/autoload.php';
+require_once 'inc/default-navs.php';
 
 /**
  * Initiates the plugin and provides the plugin class instance.
@@ -22,17 +24,7 @@ function colby_navigation() {
 		$plugin_config = [
 			'plugin_url'          => plugin_dir_url( __FILE__ ),
 			'plugin_path'         => plugin_dir_path( __FILE__ ),
-			'menu_configurations' => [
-				[
-					'args'           => [ 'depth' => 1 ],
-					'css'            => 'dist/horizontal-header-nav.css',
-					'description'    => __( 'Horizontal header nav', 'colby-navigation' ),
-					'id'             => 'horizontal-header-nav',
-					'is_critical'    => true,
-					'theme_location' => 'colby_navigation_horizontal_header_nav',
-					'walker'         => new Horizontal_Header_Nav_Walker(),
-				],
-			],
+			'menu_configurations' => [ horizontal_header_nav_configuration() ],
 		];
 
 		/**

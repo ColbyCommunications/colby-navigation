@@ -1,1 +1,1 @@
-.body{display:none!important}
+.horizontal-header-nav{font-size:1rem}.horizontal-header-nav__menu{display:flex;align-items:center;margin:0;list-style:none}.horizontal-header-nav__menu .menu-item{margin-left:1rem}.horizontal-header-nav__menu .menu-item.menu-item--home-link{font-weight:600}.horizontal-header-nav__menu .menu-item:not(.menu-item--home-link){display:none}@media screen and (min-width:768px){.horizontal-header-nav__menu .menu-item:not(.menu-item--home-link){display:block}}

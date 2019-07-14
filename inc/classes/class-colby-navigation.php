@@ -129,35 +129,17 @@ class Colby_Navigation {
 	 * @return string Updated CSS to print in head.
 	 */
 	public function add_critical_css( string $output, Navigation_Menu $menu ) : string {
-		if ( true !== $menu->get( 'is_critical' ) ) {
-			return $output;
+		if ( true === $menu->get( 'is_critical' ) ) {
+			$output .= $menu->get_css_content();
 		}
 
-		$css_file = $menu->get( 'css' );
-		if ( empty( $css_file ) ) {
-			return $output;
-		}
-
-		$file = sprintf(
-			'%s%s',
-			trailingslashit(
-				strval( $this->get( 'plugin_path' ) )
-			),
-			$css_file
-		);
-		if ( ! file_exists( $file ) ) {
-			return $output;
-		}
-
-		ob_start();
-		require_once $file;
-		return $output . ob_get_clean();
+		return $output;
 	}
 
 	/**
 	 * Filters nav menu args if the theme location is one provided by this plugin.
 	 *
-	 * @since 0.2.0
+	 * @since 0.1.0
 	 * @param array $args Nav menu args.
 	 * @return array Filtered args.
 	 */

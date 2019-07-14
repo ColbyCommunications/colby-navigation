@@ -100,4 +100,32 @@ class Navigation_Menu {
 		register_nav_menu( $this->get( 'theme_location' ), $this->get( 'description' ) );
 		$this->registered = true;
 	}
+
+	/**
+	 * Returns the content of the nav's CSS file as a string.
+	 *
+	 * @since 0.1.0
+	 * @return string
+	 */
+	public function get_css_content() : string {
+		$css_file = $$this->get( 'css' );
+		if ( empty( $css_file ) ) {
+			return '';
+		}
+
+		$file = sprintf(
+			'%s%s',
+			trailingslashit(
+				strval( $this->get( 'plugin_path' ) )
+			),
+			$css_file
+		);
+		if ( ! file_exists( $file ) ) {
+			return '';
+		}
+
+		ob_start();
+		require_once $file;
+		return ob_get_clean();
+	}
 }

@@ -1,0 +1,5 @@
+{
+    "phpcs.errorSeverity": 1,
+    "phpcs.executablePath": "./vendor/bin/phpcs",
+    "phpcbf.executablePath": "./vendor/bin/phpcbf"
+}

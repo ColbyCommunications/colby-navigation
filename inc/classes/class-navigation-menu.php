@@ -108,12 +108,12 @@ class Navigation_Menu {
 	 * @return string
 	 */
 	public function get_css_content() : string {
-		$css_file = $this->get( 'css' );
+		$css_file = $this->get( 'css_file' );
 		if ( empty( $css_file ) ) {
 			return '';
 		}
 
-		$file = sprintf( '%s%s', trailingslashit( strval( $this->get( 'plugin_path' ) ) ), $css_file );
+		$file = sprintf( '%s%s', trailingslashit( strval( colby_navigation()->get( 'plugin_path' ) ) ), $css_file );
 		if ( ! file_exists( $file ) ) {
 			return '';
 		}
@@ -129,7 +129,7 @@ class Navigation_Menu {
 	 * @since 0.1.0
 	 */
 	public function enqueue_assets() {
-		$css = $this->get( 'css' );
+		$css = $this->get( 'css_file' );
 		if ( $css && true !== $this->get( 'is_critical' ) ) {
 			wp_enqueue_style(
 				$this->get( 'id' ),

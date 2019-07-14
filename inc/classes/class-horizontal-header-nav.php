@@ -27,7 +27,7 @@ class Horizontal_Header_Nav {
 	public function get_configuration() : array {
 		return [
 			'args'           => [ 'depth' => 1 ],
-			'css'            => 'dist/horizontal-header-nav.css',
+			'css_file'       => 'dist/horizontal-header-nav.css',
 			'description'    => __( 'Horizontal header nav', 'colby-navigation' ),
 			'id'             => 'horizontal-header-nav',
 			'is_critical'    => true,

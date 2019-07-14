@@ -28,8 +28,8 @@
             "rm -rf vendor",
             "composer install --no-dev",
             "git add vendor",
-            "git commit -m 'Composer release' --no-verify;",
-            "composer install"
+            "git commit -m 'Composer release' --no-verify",
+            "git push"
         ]
     }
 }

@@ -6,3 +6,4 @@ vendor/*
 !vendor/composer
 !vendor/symfony
 !vendor/autoload.php
+!vendor/myclabs

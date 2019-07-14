@@ -15,12 +15,13 @@ require_once plugin_dir_path( __FILE__ ) . 'inc/default-navs.php';
  * Initiates the plugin and provides the plugin class instance.
  *
  * @since 0.1.0
- * @return Colby\Plugins\Colby_Navigation\Colby_Navigation
+ * @param boolean $new Whether to force creation of a new instance.
+ * @return Colby_Navigation
  */
-function colby_navigation() {
+function colby_navigation( bool $new = false ) : Colby_Navigation {
 	static $colby_navigation;
 
-	if ( is_null( $colby_navigation ) ) {
+	if ( true === $new || is_null( $colby_navigation ) ) {
 		$plugin_config = [
 			'plugin_url'          => plugin_dir_url( __FILE__ ),
 			'plugin_path'         => plugin_dir_path( __FILE__ ),

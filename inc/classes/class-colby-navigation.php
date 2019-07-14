@@ -71,9 +71,9 @@ class Colby_Navigation {
 	 *
 	 * @since 0.1.0
 	 * @param array $config Menu configuration.
-	 * @return Navigation_Menu
+	 * @return null|Navigation_Menu
 	 */
-	public function create_menu( array $config ) : Navigation_Menu {
+	public function create_menu( array $config ) {
 		if ( ! isset( $config['theme_location'] ) || ! isset( $config['id'] ) ) {
 			return null;
 		}

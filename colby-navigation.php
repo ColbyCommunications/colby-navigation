@@ -1,6 +1,11 @@
 <?php
 /**
  * Plugin Name: Colby Navigation
+ * Description: Navigation menus for WordPress.
+ * Version: 0.1.0
+ * Author: Colby Communications
+ * Author URI: https://www.colby.edu/communicationsoffice
+ * Text Domain: colby-navigation
  *
  * @package colby-navigation
  */

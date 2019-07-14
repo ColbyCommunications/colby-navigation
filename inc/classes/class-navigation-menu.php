@@ -50,7 +50,7 @@ class Navigation_Menu {
 
 		/**
 		 * Fires after the menu instance has been set up.
-		 * 
+		 *
 		 * @param Navigation_Menu
 		 */
 		do_action( 'colby_navigation_nav_menu_init', $this );
@@ -113,19 +113,30 @@ class Navigation_Menu {
 			return '';
 		}
 
-		$file = sprintf(
-			'%s%s',
-			trailingslashit(
-				strval( $this->get( 'plugin_path' ) )
-			),
-			$css_file
-		);
+		$file = sprintf( '%s%s', trailingslashit( strval( $this->get( 'plugin_path' ) ) ), $css_file );
 		if ( ! file_exists( $file ) ) {
 			return '';
 		}
 
 		ob_start();
-		require_once $file;
+		require_once $file; // phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.UsingVariable
 		return ob_get_clean();
+	}
+
+	/**
+	 * Enqueues assets for the navigation menu.
+	 *
+	 * @since 0.1.0
+	 */
+	public function enqueue_assets() {
+		$css = $this->get( 'css' );
+		if ( $css && true !== $this->get( 'is_critical' ) ) {
+			wp_enqueue_style(
+				$this->get( 'id' ),
+				sprintf( '%s%s', trailingslashit( colby_navigation()->get( 'plugin_url' ) ), $css ),
+				[],
+				filemtime( sprintf( '%s%s', trailingslashit( colby_navigation()->get( 'plugin_path' ) ), $css ) )
+			);
+		}
 	}
 }

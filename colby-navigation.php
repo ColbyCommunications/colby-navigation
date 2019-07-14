@@ -8,8 +8,8 @@
 use Colby\Plugins\Colby_Navigation\Colby_Navigation;
 use function Colby\Plugins\Colby_Navigation\horizontal_header_nav_configuration;
 
-require_once 'vendor/autoload.php';
-require_once 'inc/default-navs.php';
+require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
+require_once plugin_dir_path( __FILE__ ) . 'inc/default-navs.php';
 
 /**
  * Initiates the plugin and provides the plugin class instance.
@@ -43,3 +43,4 @@ function colby_navigation() {
 add_action( 'after_setup_theme', [ colby_navigation(), 'register_locations' ] );
 add_action( 'wp_head', [ colby_navigation(), 'print_critical_css' ] );
 add_filter( 'wp_nav_menu_args', [ colby_navigation(), 'filter_nav_menu_args' ] );
+add_action( 'wp_enqueue_scripts', [ colby_navigation(), 'enqueue_nav_assets' ] );

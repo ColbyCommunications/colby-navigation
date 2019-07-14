@@ -13,12 +13,8 @@
     }
   },
   "lint-staged": {
-    "*.php": [
-      "./vendor/bin/phpcs --extensions=php --warning-severity=8 -s"
-    ],
-    "*.scss": [
-      "stylelint"
-    ]
+    "*.php": "./vendor/bin/phpcs --extensions=php --warning-severity=1 -s",
+    "*.scss": "stylelint --syntax=scss"
   },
   "devDependencies": {
     "@wordpress/browserslist-config": "^2.5.0",

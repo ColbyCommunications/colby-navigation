@@ -12,7 +12,7 @@ use \stdClass as stdClass;
 
 /**
  * Horizontal_Header_Nav class
- * 
+ *
  * @since 0.1.0
  */
 class Horizontal_Header_Nav {

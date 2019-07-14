@@ -58,7 +58,9 @@ class Colby_Navigation {
 	 */
 	public function get_menus() : array {
 		if ( is_null( $this->menus ) ) {
-			$this->menus = array_map( [ $this, 'create_menu' ], (array) $this->get( 'menu_configurations' ) );
+			$this->menus = array_filter(
+				array_map( [ $this, 'create_menu' ], (array) $this->get( 'menu_configurations' ) )
+			);
 		}
 
 		return $this->menus;
@@ -72,6 +74,10 @@ class Colby_Navigation {
 	 * @return Navigation_Menu
 	 */
 	public function create_menu( array $config ) : Navigation_Menu {
+		if ( ! isset( $config['theme_location'] ) || ! isset( $config['id'] ) ) {
+			return null;
+		}
+
 		/**
 		 * Filters configuration options when creationg a Navigation_Menu instance.
 		 *
@@ -134,6 +140,17 @@ class Colby_Navigation {
 		}
 
 		return $output;
+	}
+
+	/**
+	 * Runs enqueue function for all menus.
+	 *
+	 * @since 0.1.0
+	 */
+	public function enqueue_nav_assets() {
+		foreach ( $this->get_menus() as $menu ) {
+			$menu->enqueue_assets();
+		}
 	}
 
 	/**

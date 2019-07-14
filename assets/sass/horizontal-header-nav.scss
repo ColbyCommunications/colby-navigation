@@ -1,10 +1,11 @@
 .horizontal-header-nav {
-	font-size: 1rem;
+	font-size: 0.891rem;
 
 	&__menu {
 		display: flex;
 		align-items: center;
 		margin: 0;
+		padding-left: 0;
 		list-style: none;
 		text-align: center;
 
@@ -18,7 +19,7 @@
 			&:not(.menu-item--home-link) {
 				display: none;
 
-				@media screen and (min-width: 768px) {
+				@media screen and (min-width: 1120px) {
 					display: block;
 				}
 			}

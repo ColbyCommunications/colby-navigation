@@ -108,7 +108,7 @@ class Navigation_Menu {
 	 * @return string
 	 */
 	public function get_css_content() : string {
-		$css_file = $$this->get( 'css' );
+		$css_file = $this->get( 'css' );
 		if ( empty( $css_file ) ) {
 			return '';
 		}

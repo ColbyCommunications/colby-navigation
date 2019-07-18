@@ -10,7 +10,7 @@
  * @package colby-navigation
  */
 
-use Colby\Plugins\Colby_Navigation\Colby_Navigation;
+use Colby\Plugins\Colby_Navigation\{Colby_Navigation, Navigation_Menu};
 use function Colby\Plugins\Colby_Navigation\horizontal_header_nav_configuration;
 
 require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
@@ -27,23 +27,56 @@ function colby_navigation( bool $new = false ) : Colby_Navigation {
 	static $colby_navigation;
 
 	if ( true === $new || is_null( $colby_navigation ) ) {
-		$plugin_config = [
-			'plugin_url'          => plugin_dir_url( __FILE__ ),
-			'plugin_path'         => plugin_dir_path( __FILE__ ),
-			'menu_configurations' => [ horizontal_header_nav_configuration() ],
-		];
+		$plugin_url  = plugin_dir_url( __FILE__ );
+		$plugin_path = plugin_dir_path( __FILE__ );
+
+		$default_menu_configurations = [ horizontal_header_nav_configuration() ];
+
+		/**
+		 * Filters configuration for menus provided by the plugin.
+		 *
+		 * @since 0.1.0
+		 * @param array $menu_configurations
+		 */
+		$menu_configurations = apply_filters( 'colby_navigation_menus', $default_menu_configurations );
 
 		/**
 		 * Filters plugin configuration options.
 		 *
+		 * @since 0.1.0
 		 * @param array
 		 */
-		$plugin_config = apply_filters( 'colby_navigation_plugin_config', $plugin_config );
+		$plugin_config = apply_filters(
+			'colby_navigation_plugin_config',
+			compact(
+				'plugin_url',
+				'plugin_path',
+				'menu_configurations'
+			)
+		);
 
 		$colby_navigation = new Colby_Navigation( $plugin_config );
+
+		/**
+		 * Fires after the main plugin class instance has been created.
+		 *
+		 * @since 0.1.0
+		 * @param Colby_Navigation
+		 */
+		do_action( 'colby_navigation_init', $colby_navigation );
 	}
 
 	return $colby_navigation;
+}
+
+/**
+ * Registers a navigation menu.
+ *
+ * @param array $config An array of configuration options.
+ * @return Navigation_Menu
+ */
+function register_colby_navigation_menu( array $config ) : Navigation_Menu {
+	return colby_navigation()->register_menu( $config );
 }
 
 add_action( 'after_setup_theme', [ colby_navigation(), 'register_locations' ] );

@@ -59,7 +59,7 @@ class Colby_Navigation {
 	public function get_menus() : array {
 		if ( is_null( $this->menus ) ) {
 			$this->menus = array_filter(
-				array_map( [ $this, 'create_menu' ], (array) $this->get( 'menu_configurations' ) )
+				array_map( [ $this, 'register_menu' ], (array) $this->get( 'menu_configurations' ) )
 			);
 		}
 
@@ -73,7 +73,7 @@ class Colby_Navigation {
 	 * @param array $config Menu configuration.
 	 * @return null|Navigation_Menu
 	 */
-	public function create_menu( array $config ) {
+	public function register_menu( array $config ) {
 		if ( ! isset( $config['theme_location'] ) || ! isset( $config['id'] ) ) {
 			return null;
 		}

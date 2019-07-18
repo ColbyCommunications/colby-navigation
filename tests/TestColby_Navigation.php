@@ -21,6 +21,6 @@ class TestColby_Navigation extends WP_UnitTestCase {
     }
 
     public function test_create_menu() {
-        $this->assertNull( colby_navigation( true )->create_menu( [] ) );
+        $this->assertNull( colby_navigation( true )->register_menu( [] ) );
     }
 }

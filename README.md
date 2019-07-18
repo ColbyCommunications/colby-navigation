@@ -1,6 +1,6 @@
 # colby-navigation [![Build Status](https://travis-ci.org/ColbyCommunications/colby-navigation.svg?branch=master)](https://travis-ci.org/ColbyCommunications/colby-navigation)
 
-Provides markup and styling common types of navigation menus and provides a simple API for the registration of repeatable menus through WordPress.
+Provides markup and styling for common types of navigation menus and provides a simple API for the registration of menus through WordPress.
 
 ## Register menus
 
@@ -33,6 +33,8 @@ function add_my_menu( $menus ) {
     $menus[] = [
         // Configuration array.
     ];
+
+    return $menus;
 }
 add_filter( 'colby_navigation_menus', 'add_my_menu' );
 ```
@@ -60,3 +62,8 @@ The plugin provides the following menus by default:
 ### `colby_navigation_horizontal_header_nav`
 
 A navigation menu intended for use in site header nav bars. It accepts only one level and truncates the list after 4 items by default (which number can be modified using the `colby_navigation_horizontal_header_nav_max_items` filter). The WordPress site name is automatically added as the last item in the list.
+
+#### Usage
+```PHP
+wp_nav_menu( [ 'theme_location' => 'colby_navigation_horizontal_header_nav' ] );
+```
